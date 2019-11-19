@@ -1,0 +1,22 @@
+{
+    "employees": [
+      {
+          "firstName":"John",
+          "lastName":"Doe",
+          "address": "Here not there",
+          "age": 34
+      },
+      {
+          "firstName":"Anna",
+          "lastName":"Smith"
+      },
+      {
+          "firstName":"Peter",
+          "lastName":"Jones"
+      },
+      {
+          "firstName":"Andrew",
+          "lastName":"Beatty"
+      }
+    ]
+  }

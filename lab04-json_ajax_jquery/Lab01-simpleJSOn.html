@@ -1,0 +1,25 @@
+<html>
+
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <title>
+            Lab 4: JSON and AJAX (with jQuery) PART 1 
+        </title>
+    </head>
+    <body>
+
+        
+    </body>
+    <script>
+
+        var jsonString = '{"isbn": 1234567, "Author": "Andrew Beatty","Title" : "the emptness of ping-pong balls"}';
+        var obj = JSON.parse( jsonString);
+        console.log(obj.Author);     // Will output to the console in th
+        
+        // Use less lines of code to do the same thing 
+        // var obj = JSON.parse('{"isbn": 1234567, "Author": "Andrew Beatty","Title" : "the emptness of ping-pong balls"}');
+        // console.log(obj.Author);
+
+    </script>
+
+</html>
