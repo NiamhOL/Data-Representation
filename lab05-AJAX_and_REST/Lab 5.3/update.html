@@ -10,6 +10,14 @@
         <div id="output"></div>
     </body>
     <script>
+
+/* 
+Note: when you are passing in the car reg into the url you must remember to replace all the spaces 
+with %20 or any other special characters. A easy way to do this is to call the function in JavaScript 
+called url and code uri, thus the reg will be passed into this and put int to the end of  the url and 
+that will be what is passed up to the server 
+*/
+
         function updateCar(){
             var car = {"reg":"181 G 1234","make":"Ford","model":"Modeo","price":"00"}
             console.log(JSON.stringify(car));
@@ -19,7 +27,7 @@
                 "data":JSON.stringify(car),
                 "dataType": "JSON",
                 contentType: "application/json; charset=utf-8",
-                "success":function(result){
+                "success": function(result){
                     console.log(result);
                     document.getElementById("output").innerText = JSON.stringify(result);    
                 },
