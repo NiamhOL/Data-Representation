@@ -37,6 +37,7 @@
         </div>
     </body>
     <script>
+    // Hides the table in the create button, displays the create label and the create button. It also shows the form
     function showCreate(){
         document.getElementById('showCreateButton').style.display="none"
         document.getElementById('carTable').style.display="none"
@@ -48,11 +49,16 @@
         document.getElementById('doCreateButton').style.display="block"
         document.getElementById('doUpdateButton').style.display="none"
     }
+
+    // Does the opposite of showCreate - good place to put in all the code to get all the data from the server 9call AJAX to get all the data from the server. 
+    // This should also be called when the program starts up so the data from the server is loaded  
     function showViewAll(){
         document.getElementById('showCreateButton').style.display="block"
         document.getElementById('carTable').style.display="block"
         document.getElementById('createUpdateForm').style.display="none"
     }
+
+    // Hides the create button and the table, shows the form, shows the update label and the update button
     function showUpdate(buttonElement){
         document.getElementById('showCreateButton').style.display="none"
         document.getElementById('carTable').style.display="none"
@@ -69,6 +75,10 @@
         var car = getCarFromRow(rowElement)
         populateFormWithCar(car)
     }
+
+    // When doCreate is called it gets the form, makes a new car object, 
+    // logs it out to the console and adds car to the table clears the form and then calls showViewAll
+    // Good place for AJAX call to create car on server 
     function doCreate(){
         var form = document.getElementById('createUpdateForm')
         
@@ -83,6 +93,9 @@
         clearForm()
         showViewAll()
     }
+    // This is what gets called when you click the update button; gets the car from the form
+    //  gets the ID for the car and resets it in the table
+    // Good place to save a car back to the server by calling AJAX to the server to be updates(Good place for AJAX update the server)
     function doUpdate(){
         var car = getCarFromForm();
         var rowElement = document.getElementById(car.reg);
@@ -91,6 +104,9 @@
         clearForm();
         showViewAll();
     }
+    // Element gets passed in gets the index of the row and then calls delete row
+    // Get car reg from id of row and then call AJAX with that car reg to delete it 
+    // Good place for AJAX Delete from server 
     function doDelete(r){
         var tableElement = document.getElementById('carTable');
         var rowElement = r.parentNode.parentNode;
@@ -98,6 +114,9 @@
         deleteCarAjax(rowElement.getAttribute("id"));
         tableElement.deleteRow(index);
     }
+
+    // Add car will be called when we want to add a new car 
+    // Call this function for each car returned in the get all
     function addCarToTable(car){
         var tableElement = document.getElementById('carTable')
         var rowElement = tableElement.insertRow(-1)
@@ -115,6 +134,8 @@
         var cell6 = rowElement.insertCell(5);
         cell6.innerHTML = '<button onclick=doDelete(this)>delete</button>'
     }
+
+    // Clears the form for the next thing 
     function clearForm(){
         var form = document.getElementById('createUpdateForm')
         
@@ -158,6 +179,7 @@
         console.log(JSON.stringify(car))
         return car
     }
+    // Call AJAX that gets all the cars for each car calls the function that will insert it into the table
     function getAllAjax(){
         $.ajax({
             "url": "http://127.0.0.1:5000/cars",
@@ -175,6 +197,7 @@
             }
         });
     }
+    //Call the AJAX thar will create a car on the server
     function createCarAjax(car){
         //var car = {"reg":"12 D 1234","make":"Fiat","model":"Punto","price":3000}
         console.log(JSON.stringify(car));
@@ -192,6 +215,7 @@
             }
         });
     }
+    // Call the AJAX that will update the car on the server 
     function updateCarAjax(car){
         //var car = {"reg":"12 D 1234","price":8000}
         console.log(JSON.stringify(car));
@@ -209,6 +233,8 @@
             }
         });
     }
+    // Get the id attribute from row(i.e. the reg)
+    // Call the AJAX that will delete the car form the server
     function deleteCarAjax(reg){
         //var car = {"reg":"12 D 1234"}
         console.log(JSON.stringify(car));
